@@ -1,0 +1,21 @@
+{
+    "name": "platx/yii2-data-log",
+    "description": "Logs for table changes in Yii2",
+    "type": "yii2-extension",
+    "keywords": ["yii2","data","logs"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vladyslav Platonov",
+            "email": "vlad@plat-x.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "platx\\datalogger\\": ""
+        }
+    }
+}
