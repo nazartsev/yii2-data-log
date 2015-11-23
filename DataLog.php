@@ -50,7 +50,7 @@ class DataLog extends ActiveRecord
     public function rules()
     {
         return [
-	        [['model_name', 'type_key', 'data_current', 'created_at', 'record_id', 'table_name'], 'required'],
+	        [['model_name', 'type_key', 'data_current', 'record_id', 'table_name'], 'required'],
             [['id', 'user_id', 'type_key'], 'integer'],
             [['data_prev', 'data_current'], 'string'],
             [['dataPrev', 'dataCurrent', 'recordId'], 'safe'],
