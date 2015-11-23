@@ -66,7 +66,7 @@ class DataLog extends ActiveRecord
         $this->app_id = Yii::$app->id;
 
         if(!empty(Yii::$app->user)) {
-            $this->attributes['user_id'] = Yii::$app->user->id;
+            $this->user_id = Yii::$app->user->id;
         }
 
         if(!$this->data_current) {
