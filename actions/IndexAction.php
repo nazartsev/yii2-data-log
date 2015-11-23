@@ -18,7 +18,7 @@ class IndexAction extends Action
     /**
      * @var string Файл отображения
      */
-    public $viewFile = 'index';
+    public $viewFile;
 
     /**
      * @var int Количество логов на странице
@@ -39,7 +39,8 @@ class IndexAction extends Action
         $dataProvider->pagination->pageSize = $this->pageSize;
 
         return Yii::$app->view->render($this->viewFile, [
-            'dataProvider' => $dataProvider
+            'model' => $model,
+            'dataProvider' => $dataProvider,
         ]);
     }
 }

@@ -16,7 +16,7 @@ class ViewAction
     /**
      * @var string Файл отображения
      */
-    public $viewFile = 'view';
+    public $viewFile;
 
     /**
      * @param $id
