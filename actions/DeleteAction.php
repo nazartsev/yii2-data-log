@@ -39,7 +39,7 @@ class DeleteAction extends Action
         }
 
         if(!Yii::$app->request->isAjax) {
-            return Yii::$app->response->redirect($this->redirectUrl);
+            return $this->controller->redirect($this->redirectUrl);
         }
 
         return true;

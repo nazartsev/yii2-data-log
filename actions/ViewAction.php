@@ -4,6 +4,7 @@ namespace platx\datalog\actions;
 
 use platx\datalog\DataLogForm;
 use Yii;
+use yii\base\Action;
 use yii\web\NotFoundHttpException;
 
 
@@ -11,7 +12,7 @@ use yii\web\NotFoundHttpException;
  * Просмотр лога
  * @package platx\datalog\actions
  */
-class ViewAction
+class ViewAction extends Action
 {
     /**
      * @var string Файл отображения
@@ -32,7 +33,7 @@ class ViewAction
             throw new NotFoundHttpException('Лог не найден!');
         }
 
-        return Yii::$app->view->render($this->viewFile, [
+        return $this->controller->render($this->viewFile, [
             'model' => $dataLogForm
         ]);
     }

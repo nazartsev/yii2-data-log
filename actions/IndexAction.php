@@ -38,7 +38,7 @@ class IndexAction extends Action
 
         $dataProvider->pagination->pageSize = $this->pageSize;
 
-        return Yii::$app->view->render($this->viewFile, [
+        return $this->controller->render($this->viewFile, [
             'model' => $model,
             'dataProvider' => $dataProvider,
         ]);
