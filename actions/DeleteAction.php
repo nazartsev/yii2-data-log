@@ -33,9 +33,9 @@ class DeleteAction extends Action
         }
 
         if ($dataLogForm->delete()) {
-            Yii::$app->session->setFlash('success');
+            Yii::$app->session->setFlash('success', 'Лог удален!');
         } else {
-            Yii::$app->session->setFlash('error');
+            Yii::$app->session->setFlash('error', 'Ошибка удаления лога!');
         }
 
         if(!Yii::$app->request->isAjax) {

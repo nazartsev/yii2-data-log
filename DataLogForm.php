@@ -98,7 +98,7 @@ class DataLogForm extends DataLog
         /** @var ActiveRecord $model */
         $model = new $modelName;
 
-        $model = $model::findOne($this->primaryKey);
+        $model = $model::findOne($this->recordId);
 
         if(!empty($model)) {
             if ($model->delete()) {

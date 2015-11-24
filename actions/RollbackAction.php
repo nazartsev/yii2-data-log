@@ -32,9 +32,9 @@ class RollbackAction extends Action
         }
 
         if ($dataLogForm->rollback()) {
-            Yii::$app->session->setFlash('success');
+            Yii::$app->session->setFlash('success', 'Успешно применено!');
         } else {
-            Yii::$app->session->setFlash('error');
+            Yii::$app->session->setFlash('error', 'Ошибка при откате записи!');
         }
 
         if(!Yii::$app->request->isAjax) {
