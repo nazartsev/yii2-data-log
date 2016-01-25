@@ -1,5 +1,5 @@
 {
-    "name": "platx/yii2-data-log",
+    "name": "nazartsev/yii2-data-log",
     "description": "Logs for table changes in Yii2",
     "type": "yii2-extension",
     "keywords": ["yii2","data","logs"],
@@ -8,6 +8,10 @@
         {
             "name": "Vladyslav Platonov",
             "email": "vlad@plat-x.com"
+        },
+        {
+            "name": "Nazartsev Egor",
+            "email": "nazartsev@gmail.com"
         }
     ],
     "require": {
@@ -15,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "platx\\datalog\\": ""
+            "nazartsev\\datalog\\": ""
         }
     }
 }
