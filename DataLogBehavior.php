@@ -21,6 +21,12 @@ class DataLogBehavior extends Behavior
     public $apps = ['app-backend'];
 
     /**
+     * Ignored this fields in model
+     * @var bool
+     */
+    public $ignoredFields = false;
+
+    /**
      * Предыдущие данные
      * @var null
      */
@@ -60,7 +66,7 @@ class DataLogBehavior extends Behavior
      * Получаем старые атрибуты
      */
     public function afterFind() {
-        $this->_dataPrev = $this->owner->attributes;
+        $this->_dataPrev = $this->_getNotIgnoredFields($this->owner->attributes);
     }
 
     /**
@@ -69,9 +75,10 @@ class DataLogBehavior extends Behavior
     public function afterInsert() {
         $this->_attributes = array_merge($this->_attributes, [
             'type_key' => DataLog::TYPE_INSERT,
-            'dataCurrent' => $this->owner->attributes,
+            'dataCurrent' => $this->_getNotIgnoredFields($this->owner->attributes),
             'dataPrev' => [],
         ]);
+
         $this->_saveData();
     }
 
@@ -82,7 +89,7 @@ class DataLogBehavior extends Behavior
         $this->_attributes = array_merge($this->_attributes, [
             'type_key' => DataLog::TYPE_UPDATE,
             'dataPrev' => $this->_dataPrev,
-            'dataCurrent' => $this->owner->attributes,
+            'dataCurrent' => $this->_getNotIgnoredFields($this->owner->attributes),
         ]);
         $this->_saveData();
     }
@@ -93,7 +100,7 @@ class DataLogBehavior extends Behavior
     public function afterDelete() {
         $this->_attributes = array_merge($this->_attributes,[
             'type_key' => DataLog::TYPE_DELETE,
-            'dataPrev' => $this->owner->attributes,
+            'dataPrev' => $this->_getNotIgnoredFields($this->owner->attributes),
             'dataCurrent' => [],
         ]);
         $this->_saveData();
@@ -123,5 +130,23 @@ class DataLogBehavior extends Behavior
         }
 
         return true;
+    }
+
+    /**
+     * Получение только доступных полей для логирования
+     * @param $attributes
+     * @return array
+     */
+    protected function _getNotIgnoredFields($attributes) {
+        if ($this->ignoredFields !== false) {
+            $notIgnoredAttributes = [];
+            foreach ($attributes as $attributeName => $attributeValue) {
+                if (in_array($attributeName, $this->ignoredFields) !== false) {
+                    $notIgnoredAttributes[$attributeName] = $attributeValue;
+                }
+            }
+            return $notIgnoredAttributes;
+        }
+        return $attributes;
     }
 }
